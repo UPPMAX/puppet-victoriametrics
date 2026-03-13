@@ -39,4 +39,11 @@ class victoriametrics::install (
       group        => 'root',
     }
   }
+
+  file { '/var/lib/victoriametrics':
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
 }
