@@ -8,19 +8,14 @@ class victoriametrics::vmstorage::service {
   $binary_directory = $victoriametrics::params::binary_directory
   $data_directory = $victoriametrics::vmstorage::data_directory
   $service_enable = $victoriametrics::vmstorage::service_enable
-  $service_status = $victoriametrics::vmstorage::service_status
+  $service_active = $victoriametrics::vmstorage::service_active
   $service_manage = $victoriametrics::vmstorage::service_manage
-
-  $service_ensure = $ensure ? {
-    'present'  => true,
-    default   => false
-  }
 
   if $service_manage {
     systemd::manage_unit { "${service_name}.service":
       ensure        => $ensure,
       enable        => $service_enable,
-      active        => $service_status,
+      active        => $service_active,
       unit_entry    => {
         'Description' => 'VictoriaMetrics vmstorage service',
         'After'       => 'network.target',
@@ -42,11 +37,6 @@ class victoriametrics::vmstorage::service {
       install_entry => {
         'WantedBy' => 'multi-user.target',
       },
-    }
-
-    service { $service_name:
-      ensure    => $service_ensure,
-      name      => $service_name,
     }
   }
 }

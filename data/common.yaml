@@ -39,7 +39,7 @@ victoriametrics::vmstorage::systemd_protect_home: "yes"
 # Service
 victoriametrics::vmstorage::service_manage: true
 victoriametrics::vmstorage::service_enable: true
-victoriametrics::vmstorage::service_status: true
+victoriametrics::vmstorage::service_active: true
 victoriametrics::vmstorage::service_name: "vmstorage"
 victoriametrics::vmstorage::service_ensure: "present"
 
@@ -51,7 +51,7 @@ victoriametrics::vmselect::systemd_protect_home: "yes"
 # Service
 victoriametrics::vmselect::service_manage: true
 victoriametrics::vmselect::service_enable: true
-victoriametrics::vmselect::service_status: true
+victoriametrics::vmselect::service_active: true
 victoriametrics::vmselect::service_name: "vmselect"
 victoriametrics::vmselect::service_ensure: "present"
 
@@ -63,7 +63,7 @@ victoriametrics::vminsert::systemd_protect_home: "yes"
 # Service
 victoriametrics::vminsert::service_manage: true
 victoriametrics::vminsert::service_enable: true
-victoriametrics::vminsert::service_status: true
+victoriametrics::vminsert::service_active: true
 victoriametrics::vminsert::service_name: "vminsert"
 victoriametrics::vminsert::service_ensure: "present"
 
@@ -75,7 +75,7 @@ victoriametrics::vmagent::systemd_protect_home: "yes"
 # Service
 victoriametrics::vmagent::service_manage: true
 victoriametrics::vmagent::service_enable: true
-victoriametrics::vmagent::service_status: true
+victoriametrics::vmagent::service_active: true
 victoriametrics::vmagent::service_name: "vmagent"
 victoriametrics::vmagent::service_ensure: "present"
 

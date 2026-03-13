@@ -21,7 +21,7 @@ class victoriametrics::vmselect (
   String $service_ensure                                  = undef,
   Boolean $service_manage                                 = undef,
   Boolean $service_enable                                 = undef,
-  Boolean $service_status                                 = undef,
+  Boolean $service_active                                 = undef,
 ) inherits victoriametrics::params {
   contain victoriametrics::user
   contain victoriametrics::install

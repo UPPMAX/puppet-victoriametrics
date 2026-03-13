@@ -19,7 +19,7 @@ class victoriametrics::vmagent (
   String $service_ensure                                       = undef,
   Boolean $service_manage                                      = undef,
   Boolean $service_enable                                      = undef,
-  Boolean $service_status                                      = undef,
+  Boolean $service_active                                      = undef,
   Hash $promscrape_config                                      = undef,
   Variant[Stdlib::HTTPUrl, Stdlib::HTTPSUrl] $remote_write_url = undef,
   String[1] $promscrape_max_scrape_size                        = undef,
