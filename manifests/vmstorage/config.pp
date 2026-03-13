@@ -19,6 +19,7 @@ class victoriametrics::vmstorage::config {
     require => File['configuration_directory']
   }
   file { 'data_directory':
-    * => $data_directory,
+    ensure => 'directory',
+    *      => $data_directory,
   }
 }
