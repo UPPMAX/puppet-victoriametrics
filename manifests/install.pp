@@ -31,12 +31,13 @@ class victoriametrics::install (
   ]
   if any($cluster_binaries) |$bin| { getvar("victoriametrics.${bin}_version") != $version } {
     archive { "/tmp/${archive_name}.tar.gz":
-      ensure       => $ensure,
-      source       => $download_url,
-      extract      => true,
-      extract_path => "${binary_directory['path']}",
-      user         => 'root',
-      group        => 'root',
+      ensure        => $ensure,
+      source        => $download_url,
+      extract       => true,
+      extract_path  => "${binary_directory['path']}",
+      extract_flags => '--no-same-owner -xf',
+      user          => 'root',
+      group         => 'root',
     }
   }
 
