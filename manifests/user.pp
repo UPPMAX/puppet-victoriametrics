@@ -10,8 +10,6 @@ class victoriametrics::user {
   group { $group:
     ensure  => $ensure,
     system  => true,
-    before  => User[$user],
-    members => [$user]
   }
   user { $user:
     ensure  => $ensure,
@@ -20,6 +18,5 @@ class victoriametrics::user {
     gid     => $group,
     shell   => $shell,
     home    => $binary_directory['path'],
-    require => Group[$group]
   }
 }
