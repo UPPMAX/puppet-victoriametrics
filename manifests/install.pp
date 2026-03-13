@@ -15,13 +15,15 @@ class victoriametrics::install (
 
   file { $root_install['path']:
     ensure => directory,
-    owner  => $user,
-    group  => $group,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
   }
   file { $binary_directory['path']:
     ensure => directory,
     owner  => 'root',
     group  => 'root',
+    mode   => '0755',
   }
 
   $cluster_binaries = [
