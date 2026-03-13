@@ -24,16 +24,19 @@ class victoriametrics::install (
     group  => 'root',
   }
 
-  archive { "/tmp/${archive_name}.tar.gz":
-    ensure       => $ensure,
-    source       => $download_url,
-    extract      => true,
-    extract_path => "${binary_directory['path']}",
-    unless       => [
-      "test $(${binary_directory['path']}/vmstorage-prod --version 2>&1 | tr '-' ' ' | awk '{print $5}') = '${version}'",
-    ],
-    user         => 'root',
-    group        => 'root',
-    env_path     => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
+  $cluster_binaries = [
+    "vminsert",
+    "vmselect",
+    "vmstorage",
+  ]
+  if any($cluster_binaries) |$bin| { getvar("victoriametrics.${bin}_version") != $version } {
+    archive { "/tmp/${archive_name}.tar.gz":
+      ensure       => $ensure,
+      source       => $download_url,
+      extract      => true,
+      extract_path => "${binary_directory['path']}",
+      user         => 'root',
+      group        => 'root',
+    }
   }
 }
