@@ -1,0 +1,2 @@
+# Work-around os.architecture being x86_64 instead of amd64 on RedHat
+victoriametrics::params::architecture: amd64
