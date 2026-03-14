@@ -24,12 +24,12 @@ class victoriametrics::vmselect (
   Boolean $service_active                                 = undef,
 ) inherits victoriametrics::params {
   contain victoriametrics::user
-  contain victoriametrics::install
+  contain victoriametrics::install::cluster
   contain victoriametrics::vmselect::config
   contain victoriametrics::vmselect::service
 
   if ($ensure == 'present' or $ensure == true) {
-    Class['victoriametrics::user'] -> Class['victoriametrics::install'] -> Class['victoriametrics::vmselect::config']
+    Class['victoriametrics::user'] -> Class['victoriametrics::install::cluster'] -> Class['victoriametrics::vmselect::config']
 
     if $restart {
       # If $restart is true, notify the service on config changes (~>)
@@ -39,6 +39,6 @@ class victoriametrics::vmselect (
       Class['victoriametrics::vmselect::config'] -> Class['victoriametrics::vmselect::service']
     }
   } else {
-    Class['victoriametrics::vmselect::service'] -> Class['victoriametrics::vmselect::config'] -> Class['victoriametrics::install']
+    Class['victoriametrics::vmselect::service'] -> Class['victoriametrics::vmselect::config'] -> Class['victoriametrics::install::cluster']
   }
 }

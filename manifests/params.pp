@@ -17,5 +17,6 @@ class victoriametrics::params (
   String $platform                               = undef,
   String $architecture                           = undef,
   String $archive_name                           = undef,
+  String $archive_name_vmutils                   = undef,
 ) {
 }

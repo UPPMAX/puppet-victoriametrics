@@ -10,10 +10,6 @@ class victoriametrics::vmutils (
   Boolean $enterprise                                     = undef,
   String $repository_url                                  = $victoriametrics::params::repository_url,
   String $platform                                        = $victoriametrics::params::platform,
-  String $archive_name                                    = undef,
 ) inherits victoriametrics::params {
-
-  class { 'victoriametrics::install':
-    archive_name => $archive_name,
-  }
+  contain victoriametrics::install::vmutils
 }

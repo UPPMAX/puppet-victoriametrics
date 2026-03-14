@@ -22,8 +22,7 @@ victoriametrics::params::repository_url: "https://github.com/VictoriaMetrics/Vic
 victoriametrics::params::platform: "linux"
 victoriametrics::params::architecture: "%{facts.os.architecture}"
 victoriametrics::params::archive_name: "victoria-metrics-%{lookup('victoriametrics::params::platform')}-%{lookup('victoriametrics::params::architecture')}-%{lookup('victoriametrics::params::version')}-cluster"
-
-victoriametrics::vmutils::archive_name: "vmutils-%{lookup('victoriametrics::params::platform')}-%{lookup('victoriametrics::params::architecture')}-%{lookup('victoriametrics::params::version')}"
+victoriametrics::params::archive_name_vmutils: "vmutils-%{lookup('victoriametrics::params::platform')}-%{lookup('victoriametrics::params::architecture')}-%{lookup('victoriametrics::params::version')}"
 
 # User/Group
 victoriametrics::params::user: "victoriametrics"

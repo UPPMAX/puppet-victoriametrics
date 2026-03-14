@@ -1,17 +1,8 @@
 # PRIVATE CLASS: do not call directly
-class victoriametrics::install (
-  $archive_name = $victoriametrics::params::archive_name
-) {
+class victoriametrics::install {
   assert_private()
-  $version = $victoriametrics::params::version
-  $ensure = $victoriametrics::params::ensure
-  $user = $victoriametrics::params::user
-  $group = $victoriametrics::params::group
   $root_install = $victoriametrics::params::root_install
   $binary_directory = $victoriametrics::params::binary_directory
-  $repository_url = $victoriametrics::params::repository_url
-  $platform = $victoriametrics::params::platform
-  $download_url = "${repository_url}/releases/download/${version}/${archive_name}.tar.gz"
 
   file { $root_install['path']:
     ensure => directory,
@@ -24,23 +15,6 @@ class victoriametrics::install (
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
-  }
-
-  $cluster_binaries = [
-    "vminsert",
-    "vmselect",
-    "vmstorage",
-  ]
-  if any($cluster_binaries) |$bin| { getvar("victoriametrics.${bin}_version") != $version } {
-    archive { "/tmp/${archive_name}.tar.gz":
-      ensure        => $ensure,
-      source        => $download_url,
-      extract       => true,
-      extract_path  => "${binary_directory['path']}",
-      extract_flags => '--no-same-owner -xf',
-      user          => 'root',
-      group         => 'root',
-    }
   }
 
   file { '/var/lib/victoriametrics':
