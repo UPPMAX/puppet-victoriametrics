@@ -9,13 +9,24 @@ class victoriametrics::install::vmutils {
   $download_url = "${repository_url}/releases/download/${version}/${archive_name}.tar.gz"
   $binary_directory = $victoriametrics::params::binary_directory
 
-  archive { "/tmp/${archive_name}.tar.gz":
-    ensure        => $ensure,
-    source        => $download_url,
-    extract       => true,
-    extract_path  => "${binary_directory['path']}",
-    extract_flags => '--no-same-owner -xf',
-    user          => 'root',
-    group         => 'root',
+  $vmutils_binaries = [
+    "vmagent",
+    "vmalert",
+    "vmalert-tool",
+    "vmauth",
+    "vmbackup",
+    "vmctl",
+    "vmrestore",
+  ]
+  if any($vmutils_binaries) |$bin| { getvar("victoriametrics.${bin}_version") != $version } {
+    archive { "/tmp/${archive_name}.tar.gz":
+      ensure        => $ensure,
+      source        => $download_url,
+      extract       => true,
+      extract_path  => "${binary_directory['path']}",
+      extract_flags => '--no-same-owner -xf',
+      user          => 'root',
+      group         => 'root',
+    }
   }
 }
