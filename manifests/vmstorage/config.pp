@@ -4,19 +4,15 @@ class victoriametrics::vmstorage::config {
   $user = $victoriametrics::params::user
   $group = $victoriametrics::params::group
   $binary_directory = $victoriametrics::params::binary_directory
-  $configuration_directory = $victoriametrics::vmstorage::configuration_directory
+  $configuration_directory = $victoriametrics::params::configuration_directory
   $configuration_file = $victoriametrics::vmstorage::configuration_file
   $data_directory = $victoriametrics::vmstorage::data_directory
   $configuration_map = $victoriametrics::vmstorage::configuration_map
 
-  file { 'configuration_directory':
-    ensure => 'directory',
-    *      => $configuration_directory,
-  }
+  ensure_resource('file', 'configuration_directory', $configuration_directory + {ensure => 'directory'})
   file { 'configuration_file':
     *       => $configuration_file,
     content => template("${module_name}/vmstorage.conf.erb"),
-    require => File['configuration_directory']
   }
   file { 'data_directory':
     ensure => 'directory',

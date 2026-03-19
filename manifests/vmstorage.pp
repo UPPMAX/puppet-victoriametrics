@@ -12,7 +12,6 @@ class victoriametrics::vmstorage (
   Variant[Boolean, String] $ensure               = $victoriametrics::params::ensure,
   Boolean $enterprise                            = undef,
   Boolean $restart                               = undef,
-  Victoriametrics::File $configuration_directory = $victoriametrics::params::configuration_directory,
   Victoriametrics::File $configuration_file      = undef,
   Victoriametrics::File $data_directory          = undef,
   Hash $configuration_map                        = undef,

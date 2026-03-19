@@ -4,7 +4,7 @@ class victoriametrics::vmselect::config {
   $user = $victoriametrics::params::user
   $group = $victoriametrics::params::group
   $binary_directory = $victoriametrics::params::binary_directory
-  $configuration_directory = $victoriametrics::vmselect::configuration_directory
+  $configuration_directory = $victoriametrics::params::configuration_directory
   $configuration_file = $victoriametrics::vmselect::configuration_file
   $cache_directory = $victoriametrics::vmselect::cache_directory
   $configuration_map = $victoriametrics::vmselect::configuration_map
@@ -16,14 +16,10 @@ class victoriametrics::vmselect::config {
     $config = $configuration_map
   }
 
-  file { 'configuration_directory':
-    ensure => 'directory',
-    *      => $configuration_directory,
-  }
+  ensure_resource('file', 'configuration_directory', $configuration_directory + {ensure => 'directory'})
   file { 'configuration_file':
     *       => $configuration_file,
     content => template("${module_name}/vmselect.conf.erb"),
-    require => File['configuration_directory']
   }
   file { 'cache_directory':
     * => $cache_directory,

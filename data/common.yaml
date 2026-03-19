@@ -118,11 +118,6 @@ victoriametrics::vmstorage::data_directory:
   group: "%{lookup('victoriametrics::params::group')}"
   mode: "0751"
 
-victoriametrics::vmselect::configuration_directory:
-  path: "/etc/victoriametrics"
-  owner: "%{lookup('victoriametrics::params::user')}"
-  group: "%{lookup('victoriametrics::params::group')}"
-  mode: "0751"
 victoriametrics::vmselect::configuration_file:
   path: "%{lookup('victoriametrics::params::configuration_directory.path')}/vmselect.conf"
   owner: "%{lookup('victoriametrics::params::user')}"
@@ -144,11 +139,6 @@ victoriametrics::vmselect::cache_directory:
   group: "%{lookup('victoriametrics::params::group')}"
   mode: "0751"
 
-victoriametrics::vminsert::configuration_directory:
-  path: "/etc/victoriametrics"
-  owner: "%{lookup('victoriametrics::params::user')}"
-  group: "%{lookup('victoriametrics::params::group')}"
-  mode: "0751"
 victoriametrics::vminsert::configuration_file:
   path: "%{lookup('victoriametrics::params::configuration_directory.path')}/vminsert.conf"
   owner: "%{lookup('victoriametrics::params::user')}"
@@ -170,11 +160,6 @@ victoriametrics::vminsert::configuration_map:
 
 victoriametrics::vminsert::relabeling_configuration_map: false
 
-victoriametrics::vmagent::configuration_directory:
-  path: "/etc/victoriametrics"
-  owner: "%{lookup('victoriametrics::params::user')}"
-  group: "%{lookup('victoriametrics::params::group')}"
-  mode: "0751"
 victoriametrics::vmagent::configuration_file:
   path: "%{lookup('victoriametrics::params::configuration_directory.path')}/prometheus.yaml"
   owner: "%{lookup('victoriametrics::params::user')}"
