@@ -17,7 +17,7 @@ class victoriametrics::vmselect::config {
   }
 
   ensure_resource('file', 'configuration_directory', $configuration_directory + {ensure => 'directory'})
-  file { 'configuration_file':
+  file { 'vmselect_configuration_file':
     *       => $configuration_file,
     content => template("${module_name}/vmselect.conf.erb"),
   }

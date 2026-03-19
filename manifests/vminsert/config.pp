@@ -18,7 +18,7 @@ class victoriametrics::vminsert::config {
   }
 
   ensure_resource('file', 'configuration_directory', $configuration_directory + {ensure => 'directory'})
-  file { 'configuration_file':
+  file { 'vminsert_configuration_file':
     *       => $configuration_file,
     content => template("${module_name}/vminsert.conf.erb"),
   }

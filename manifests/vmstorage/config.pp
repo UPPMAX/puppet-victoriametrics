@@ -10,7 +10,7 @@ class victoriametrics::vmstorage::config {
   $configuration_map = $victoriametrics::vmstorage::configuration_map
 
   ensure_resource('file', 'configuration_directory', $configuration_directory + {ensure => 'directory'})
-  file { 'configuration_file':
+  file { 'vmstorage_configuration_file':
     *       => $configuration_file,
     content => template("${module_name}/vmstorage.conf.erb"),
   }

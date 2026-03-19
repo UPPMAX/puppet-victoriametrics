@@ -14,7 +14,7 @@ class victoriametrics::vmagent::config {
     ensure => 'directory',
     *      => $tmp_data_path,
   }
-  file { 'configuration_file':
+  file { 'vmagent_configuration_file':
     *       => $configuration_file,
     content => stdlib::to_yaml($promscrape_config),
   }
