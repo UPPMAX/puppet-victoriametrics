@@ -21,7 +21,14 @@ class victoriametrics::vmselect::config {
     *       => $configuration_file,
     content => template("${module_name}/vmselect.conf.erb"),
   }
-  file { 'cache_directory':
-    * => $cache_directory,
+  file { '/var/lib/victoriametrics/vmselect':
+    ensure => directory,
+    owner  => $user,
+    group  => $group,
+    mode   => '0751',
+  }
+  file { 'vmselect_cache_directory':
+    ensure => directory,
+    *      => $cache_directory,
   }
 }
